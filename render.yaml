@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: cloud-node
+    env: python
+    buildCommand: ""
+    startCommand: python cloud_node.py
