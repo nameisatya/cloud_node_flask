@@ -1,4 +1,5 @@
 # cloud_node.py
+
 from flask import Flask, request, jsonify
 import json
 import os
@@ -12,7 +13,6 @@ def receive_from_fog():
     if not data:
         return jsonify({"error": "No data received"}), 400
 
-    # Save received data
     if not os.path.exists(AGGREGATED_PATH):
         with open(AGGREGATED_PATH, "w") as f:
             json.dump([], f)
@@ -34,8 +34,8 @@ def receive_from_fog():
 def home():
     return "✅ Cloud Node is running!"
 
-
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=10000)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host='0.0.0.0', port=port)
 
 
